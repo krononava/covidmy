@@ -53,7 +53,7 @@ async def on_message(message):
             CoronaEmbed.add_field(name="Last Updated :", value=getApi('lastUpdated'), inline=False)
             await message.channel.send("auto updates enabled")
             await message.channel.send(embed = CoronaEmbed)
-            channel = None
+            channel = ""
             channel.append(message.channel.id)
             with open('channel.json', 'r') as file:
                 data = json.load(file)
