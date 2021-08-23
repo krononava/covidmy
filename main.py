@@ -23,15 +23,14 @@ def getApi(i):
     elif i == 'lastUpdated':
         return(all[final]['last_updated'])
 
-def checkCases():
-        initial = getApi("dailyCases")
-        while True:
-            current = getApi("dailyCases")
-            if initial == current:
-                return False                                
-            else:
-                initial = getApi("dailyCases")
-                return True
+initial = getApi("dailyCases")
+while True:
+    current = getApi("dailyCases")
+    if initial == current:
+        x = 0                               
+    else:
+        x = 1
+        initial = current
 
 client = discord.Client()
 
@@ -69,8 +68,7 @@ async def on_message(message):
         except ValueError:
             pass
 
-
-    if (checkCases() == True):
+    if x == 1:
         f = open('channel.json', 'r')
         data = json.load(f)
         for i in data:
