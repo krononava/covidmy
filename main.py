@@ -61,7 +61,7 @@ async def on_message(message):
     if message.content.startswith("`slumbermycovid"):
         with open('channel.json', 'r') as file:
             data = json.load(file)
-        data.pop(message.channel.id, "not registered")
+        data.pop(message.channel.id, None)
         with open('channel.json', 'w') as file:
             json.dump(data, file)
         await message.channel.send("auto updates disabled")
