@@ -63,7 +63,7 @@ def autoSend():
     data = json.load(f)
     for i in data:
         if (message.channel.id == i): 
-            await message.channel.send(embed = CoronaEmbed)
+            message.channel.send(embed = CoronaEmbed)
     f.close()
 
 client = discord.Client()
