@@ -24,7 +24,6 @@ def getApi(i):
         return(all[final]['last_updated'])
 
 def checkCases():
-    if getApi("dailyCases") != 0:
         initial = getApi("dailyCases")
         while True:
             current = getApi("dailyCases")
@@ -72,11 +71,12 @@ async def on_message(message):
         data = json.load(f)
         for i in data:
             if (message.channel.id == i):
-                CoronaEmbed = discord.Embed(title="The Coconut Destiny", description="[Daily Report of Covid-19](https://www.coronatracker.com/country/malaysia/)", color=0xff0000)
-                CoronaEmbed.add_field(name="Cases :", value=getApi('dailyCases'), inline=False)
-                CoronaEmbed.add_field(name="Death :", value=getApi('dailyDeath'), inline=False)
-                CoronaEmbed.add_field(name="Last Updated :", value=getApi('lastUpdated'), inline=False)
-                await message.channel.send(embed = CoronaEmbed)
+                if getApi("dailyCases") != 0:
+                    CoronaEmbed = discord.Embed(title="The Coconut Destiny", description="[Daily Report of Covid-19](https://www.coronatracker.com/country/malaysia/)", color=0xff0000)
+                    CoronaEmbed.add_field(name="Cases :", value=getApi('dailyCases'), inline=False)
+                    CoronaEmbed.add_field(name="Death :", value=getApi('dailyDeath'), inline=False)
+                    CoronaEmbed.add_field(name="Last Updated :", value=getApi('lastUpdated'), inline=False)
+                    await message.channel.send(embed = CoronaEmbed)
         f.close()
 	
 keep_alive()
